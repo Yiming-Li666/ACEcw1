@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class OrderList {
+public class OrderList extends Executable{
 	public String Path;
 	public ArrayList<String> order;
 	
