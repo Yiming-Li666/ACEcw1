@@ -18,7 +18,7 @@ public class TestCase1 {
 	 * Create BUY order file in the path of "./coreCode/src/def/" as BuyOrder.csv
 	 */
 	public static void CreateBuy() throws IOException {
-		File file =new File("./coreCode/src/def/BuyOrder.csv");
+		File file =new File("./coreCode/src/core/BuyOrder.csv");
 		Writer out =new FileWriter(file);
 		String data1="103,200\r\n";
 		out.write(data1);
@@ -36,7 +36,7 @@ public class TestCase1 {
 	 * Create SELL order file in the path of "./coreCode/src/def/" as SellOrder.csv
 	 */
 	public static void CreateSell() throws IOException {
-		File file =new File("./coreCode/src/def/SellOrder.csv");
+		File file =new File("./coreCode/src/core/SellOrder.csv");
 		Writer out =new FileWriter(file);
 		String data1="95,200\r\n";
 		out.write(data1);

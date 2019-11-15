@@ -19,7 +19,7 @@ public class TestCase2 {
 	}
 
 	public static void CreateBuy() throws IOException {
-		File file =new File("./coreCode/src/def/BuyOrder.csv");
+		File file =new File("./coreCode/src/core/BuyOrder.csv");
 		Writer out =new FileWriter(file);
 		int i = 0;
 		while(i < 5) {
@@ -35,7 +35,7 @@ public class TestCase2 {
 		out.close();
 	}
 	public static void CreateSell() throws IOException {
-		File file =new File("./coreCode/src/def/SellOrder.csv");
+		File file =new File("./coreCode/src/core/SellOrder.csv");
 		Writer out =new FileWriter(file);
 		int i = 0;
 		while(i < 5) {

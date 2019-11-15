@@ -1,4 +1,4 @@
-package def;
+package core;
 
 import java.util.Scanner;
 
@@ -13,9 +13,9 @@ public class SelectFile {
 	public SelectFile() {
 		Scanner input=new Scanner(System.in);
 		System.out.print("Enter the name of buy order file(XXX.csv): ");
-		this.buyPath = "./coreCode/src/def/" + input.nextLine();
+		this.buyPath = "./coreCode/src/core/" + input.nextLine();
 		System.out.print("Enter the name of sell order file(XXX.csv): ");
-		String sellPath = "./coreCode/src/def/" + input.nextLine(); 
+		String sellPath = "./coreCode/src/core/" + input.nextLine(); 
 		this.sellPath = sellPath;
 		input.close();
 	}
