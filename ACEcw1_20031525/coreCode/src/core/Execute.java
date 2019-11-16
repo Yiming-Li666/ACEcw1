@@ -1,5 +1,7 @@
 package core;
 
+import java.util.ArrayList;
+
 public class Execute {
 
 	public static void main(String[] args) {
@@ -7,6 +9,8 @@ public class Execute {
 		SelectFile file = new SelectFile();
 		OrderList buy = new OrderList(file.buyPath);
 		OrderList sell = new OrderList(file.sellPath);
+		ArrayList<String> buyExec = new ArrayList<>();
+		ArrayList<String> sellExec = new ArrayList<>();
 		// print the original buyList and sellList
 		Executable.PrintBuy(buy.order);
 		Executable.PrintSell(sell.order);
@@ -16,9 +20,15 @@ public class Execute {
 		Executable.PrintBuy(buy.order);
 		Executable.SortSellList(sell.order);
 		Executable.PrintSell(sell.order);
-		System.out.println("-------------------After Execution-------------------");
+		// clone BUY and SELL list to store Executed order
+		Executable.CloneList(buy.order,buyExec);
+		Executable.CloneList(sell.order,sellExec);
 		// execute two lists
-		Executable.ExecuteOrder(buy.order,sell.order);
+		System.out.println("--------------------Execute List---------------------");
+		Executable.ExecuteOrder(buy.order,sell.order,buyExec,sellExec);
+		Executable.PrintBuy(buyExec);
+		Executable.PrintSell(sellExec);
+		System.out.println("-------------------After Execution-------------------");
 		Executable.PrintBuy(buy.order);
 		Executable.PrintSell(sell.order);
 	}

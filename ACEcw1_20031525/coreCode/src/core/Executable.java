@@ -113,7 +113,7 @@ public class Executable {
 		System.out.println("}");
 	}
 	
-	public static void ExecuteOrder(ArrayList<String> buyOrder, ArrayList<String> sellOrder) {
+	public static void ExecuteOrder(ArrayList<String> buyOrder, ArrayList<String> sellOrder, ArrayList<String> buyExec, ArrayList<String> sellExec) {
 		while(!buyOrder.isEmpty() || !buyOrder.isEmpty()) {
 			String[] buy = buyOrder.get(0).split(",");
 			String[] sell = sellOrder.get(0).split(",");
@@ -131,14 +131,94 @@ public class Executable {
 				}
 				else {
 					buyOrder.remove(0);
-					String newBuyElement = sell[0]+ "," + (Integer.valueOf(sell[1]).intValue() - Integer.valueOf(buy[1]).intValue());
+					String newSellElement = sell[0]+ "," + (Integer.valueOf(sell[1]).intValue() - Integer.valueOf(buy[1]).intValue());
 					//System.out.println(newBuyElement);
-					sellOrder.set(0, newBuyElement);
+					sellOrder.set(0, newSellElement);
 				}
 			}
 			else {
 				break;
 			}
+		}
+		//PrintBuy(buyExec);
+		int buySize = buyOrder.size();
+		int buyExecSize = buyExec.size();
+		int sellSize = sellOrder.size();
+		int sellExecSize = sellExec.size();
+		//System.out.println(buySize);
+//		System.out.println(buyExec.size());
+		
+		for(int i = 0; i < buySize; i++) {
+			//PrintBuy(buyExec);
+			if(i == buySize-1) {
+				//System.out.println(i);
+				String[] buy = buyOrder.get(0).split(",");
+				//System.out.println(buyExecSize-1-i);
+				
+				String[] exec = buyExec.get(buyExecSize-1-i).split(",");
+				//System.out.println(exec[1]);
+				if(Integer.valueOf(buy[1]).intValue()!=Integer.valueOf(exec[1]).intValue()) {
+					//System.out.println("in");
+					buyExec.remove(buyExec.size()-1);
+					String newBuyExecElement = buy[0]+ "," + (Integer.valueOf(exec[1]).intValue() - Integer.valueOf(buy[1]).intValue());
+					//System.out.println(newBuyExecElement);
+					buyExec.add(newBuyExecElement);
+					//PrintBuy(buyExec);
+				}
+				else {
+//					System.out.println(buyExec.size());
+//					System.out.println(i);
+//					System.out.println(buyExecSize-1-i);
+					buyExec.remove(buyExec.size()-1);
+				}
+			}
+			else {
+				buyExec.remove(buyExec.size()-1);
+			}
+		}
+		if(!buyExec.isEmpty()) {
+			String[] temp = buyExec.get(buyExec.size()-1).split(",");
+			System.out.println("￥" + temp[0]+ " for BUY order.");
+		}
+		else {
+			System.out.println("No order is executed!");
+		}
+		
+		for(int i = 0; i < sellSize; i++) {
+			if(i == sellSize-1) {
+				String[] sell = sellOrder.get(0).split(",");
+//				System.out.println(sellExec.size());
+//				System.out.println(i);
+//				System.out.println(sellExecSize-1-i);
+				String[] exec = sellExec.get(sellExecSize-1-i).split(",");
+				if(Integer.valueOf(sell[1]).intValue()!=Integer.valueOf(exec[1]).intValue()) {
+					sellExec.remove(sellExecSize-1-i);
+					String newSellExecElement = sell[0]+ "," + (Integer.valueOf(exec[1]).intValue() - Integer.valueOf(sell[1]).intValue());
+					sellExec.add(newSellExecElement);
+				}
+				else {
+					sellExec.remove(sellExecSize-1-i);
+				}
+			}
+//			System.out.println(sellExec.size());
+//			System.out.println(i);
+//			System.out.println(sellExecSize-1-i);
+			else {
+				sellExec.remove(sellExec.size()-1);
+			}		
+		}
+		if(!sellExec.isEmpty()) {
+			String[] tempSell = sellExec.get(sellExec.size()-1).split(",");
+			System.out.println("￥" + tempSell[0]+ " for SELL order.");
+		}
+		else {
+			System.out.println("No order is executed!");
+		}
+	}
+		
+	public static void CloneList(ArrayList<String> buy, ArrayList<String> buyExec){
+		for(int i = 0; i < buy.size(); i++) {
+			buyExec.add(buy.get(i));
 		}
 	}
 }
