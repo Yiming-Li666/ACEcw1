@@ -25,20 +25,20 @@ public class Executable {
 			buyOrder.set(i, buyOrder.get(maxj));
 			buyOrder.set(maxj, temp);
 		}
-		// Sort by the share value
-		for(int i=0; i < buyOrder.size(); i++) {
-			String[] flag = buyOrder.get(i).split(",");
-			for(int j=i; j < buyOrder.size(); j++) {
-				String[] pair = buyOrder.get(j).split(",");
-				if(Double.valueOf(flag[0]).doubleValue() == Double.valueOf(pair[0]).doubleValue()) {
-					if(Double.valueOf(flag[1]) > Double.valueOf(pair[1])) {
-						String temp = buyOrder.get(i);
-						buyOrder.set(i, buyOrder.get(j));
-						buyOrder.set(j, temp);
-					}
-				}
-			}
-		}
+//		// Sort by the share value
+//		for(int i=0; i < buyOrder.size(); i++) {
+//			String[] flag = buyOrder.get(i).split(",");
+//			for(int j=i; j < buyOrder.size(); j++) {
+//				String[] pair = buyOrder.get(j).split(",");
+//				if(Double.valueOf(flag[0]).doubleValue() == Double.valueOf(pair[0]).doubleValue()) {
+//					if(Double.valueOf(flag[1]) > Double.valueOf(pair[1])) {
+//						String temp = buyOrder.get(i);
+//						buyOrder.set(i, buyOrder.get(j));
+//						buyOrder.set(j, temp);
+//					}
+//				}
+//			}
+//		}
 	 }
 	
 	/*
