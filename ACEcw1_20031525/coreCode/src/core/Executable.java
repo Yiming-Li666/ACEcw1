@@ -6,7 +6,7 @@ public class Executable {
 	/*
 	 *  Sort the BUY order list
 	 *  The priority queue for BUY orders are max-oriented priority queue
-	 *  If the price of two BUY orders are the same, the price with less share has higher priority
+	 *  If the price of two BUY orders are the same, the order first enter has higher priority
 	 */
 	public static void SortBuyList(ArrayList<String> buyOrder) {
 		for(int i=0; i < buyOrder.size(); i++){
@@ -21,24 +21,12 @@ public class Executable {
 					maxj = j;
 				}
 			}
-			String temp = buyOrder.get(i);
-			buyOrder.set(i, buyOrder.get(maxj));
-			buyOrder.set(maxj, temp);
+			ChangePosition(buyOrder, maxj, i);
+			
+//			String temp = buyOrder.get(i);
+//			buyOrder.set(i, buyOrder.get(maxj));
+//			buyOrder.set(maxj, temp);
 		}
-//		// Sort by the share value
-//		for(int i=0; i < buyOrder.size(); i++) {
-//			String[] flag = buyOrder.get(i).split(",");
-//			for(int j=i; j < buyOrder.size(); j++) {
-//				String[] pair = buyOrder.get(j).split(",");
-//				if(Double.valueOf(flag[0]).doubleValue() == Double.valueOf(pair[0]).doubleValue()) {
-//					if(Double.valueOf(flag[1]) > Double.valueOf(pair[1])) {
-//						String temp = buyOrder.get(i);
-//						buyOrder.set(i, buyOrder.get(j));
-//						buyOrder.set(j, temp);
-//					}
-//				}
-//			}
-//		}
 	 }
 	
 	/*
@@ -63,7 +51,7 @@ public class Executable {
 	/*
 	 *  Sort the SELL order list
 	 *  The priority queue for SELL orders is min-oriented priority queue
-	 *  If the price of two SELL orders are the same, the price with less share has higher priority
+	 *  If the price of two SELL orders are the same, the order first enter has higher priority
 	 */
 	public static void SortSellList(ArrayList<String> sellOrder) {
 		for(int i=0; i < sellOrder.size(); i++){
@@ -76,25 +64,10 @@ public class Executable {
 				if(min > Double.valueOf(pair[0]).doubleValue()) {
 					min = Double.valueOf(pair[0]).doubleValue();
 					minj = j;
+					ChangePosition(sellOrder, minj, i);
 				}
 			}
-			String temp = sellOrder.get(i);
-			sellOrder.set(i, sellOrder.get(minj));
-			sellOrder.set(minj, temp);
-		}
-		// Sort by the share value
-		for(int i=0; i < sellOrder.size(); i++) {
-			String[] flag = sellOrder.get(i).split(",");
-			for(int j=i; j < sellOrder.size(); j++) {
-				String[] pair = sellOrder.get(j).split(",");
-				if(Double.valueOf(flag[0]).doubleValue() == Double.valueOf(pair[0]).doubleValue()) {
-					if(Double.valueOf(flag[1]) > Double.valueOf(pair[1])) {
-						String temp = sellOrder.get(i);
-						sellOrder.set(i, sellOrder.get(j));
-						sellOrder.set(j, temp);
-					}
-				}
-			}
+			
 		}
 	}
 	
@@ -199,6 +172,18 @@ public class Executable {
 		else {
 			System.out.println("No order is executed!");
 		}
+	}
+	
+	
+	public static void ChangePosition(ArrayList<String> Order, int j, int cur) {
+			String temp = Order.get(cur);
+			Order.set(cur, Order.get(j));
+			Order.set(j, temp);
+			for(int i = cur + 1; i <= j; i++) {
+				String next = Order.get(i);
+				Order.set(i, temp);
+				temp = next;
+			}
 	}
 	
 	/*

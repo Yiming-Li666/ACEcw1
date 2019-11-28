@@ -1,13 +1,14 @@
 // How to run the program
-The main method is in the Execute class.
-The test program is seperated from the main program.
-When running the program, you need to enter the file names for BUY order and SELL order and you also need to type the file name correctly.
-The test file should be stored in the core folder.
+- The main method is in the Execute class.
+- The test program is seperated from the main program.
+- First run the test program, which uses "BuyOrder.csv" and "SellOrder.csv" by default.
+- When running the program, you need to enter the file names for BUY order and SELL order and you also need to type the file name correctly.
+- The test file should be stored in the core folder.
 
 //Read in the file
-Each line of the file is an order, in the format of price,share.
-Each order will be splited by "," to get the price and share value.
-For example:
+- Each line of the file is an order, in the format of price,share.
+- Each order will be splited by "," to get the price and share value.
+- For example:
 ******************************
 81.17,400
 108.04,100
@@ -17,12 +18,12 @@ For example:
 ******************************
 
 // Test
-Test case 1 will generate two test files, "BuyOrder.csv" and "SellOrder.csv". The value is the same as the example in the pdf sheet.
-You can run the TestCase1 and TestCase2 seperately and then run the core code.
+- Test case 1 will generate two test files, "BuyOrder.csv" and "SellOrder.csv". The value is the same as the example in the pdf sheet.
+- You can run the TestCase1 and TestCase2 seperately and then run the core code.
 
 // Result
-The program will read in from two files to get BUY order and SELL order to execute them.
-The result will be print out as follow:
+- The program will read in from two files to get BUY order and SELL order to execute them.
+- The result will be print out as follow:
 ******************************
 Enter the name of buy order file(XXX.csv): BuyOrder.csv
 Enter the name of sell order file(XXX.csv): SellOrder.csv
